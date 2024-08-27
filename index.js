@@ -1,21 +1,21 @@
 const express = require('express');
 const path = require('path');
-const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://127.0.0.1:27017/wedding',{
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-});
 
 const app = express();
 
 app.use(express.json()); 
 app.use(express.urlencoded());
 
+const response = (res, code, data) =>{
+    return res.json({
+        response: code,
+        data
+    });
+}
+
 // An api endpoint that returns a short list of items
 app.post('/api/auth', (req, res) => {
-    console.log('/api/auth', req.body.pwd)
+    console.log('/api/auth')
     if (req.body.pwd) {
         return response(res, req.body.pwd == process.env.AFBG_WEDDING_PWD ? 200 : 400)
     }
