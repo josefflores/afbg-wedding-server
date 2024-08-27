@@ -4,9 +4,7 @@ const cors = require('cors')
 
 const app = express();
 
-app.use(cors({
-    origin: "https://afbg-wedding-client-*.herokuapp.com/"
-}));
+app.use(cors());
 app.use(allowCrossDomain) 
 app.use(express.json()); 
 app.use(express.urlencoded());
